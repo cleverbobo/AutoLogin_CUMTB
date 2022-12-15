@@ -1,0 +1,2 @@
+# AutoLogin_CUMTB
+使用python编写的中国矿业大学北京校园网自动登录脚本
