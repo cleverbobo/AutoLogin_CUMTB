@@ -4,6 +4,7 @@ import re
 from urllib.parse import quote
 import argparse
 import urllib3
+import os
 
 from encryption.srun_md5 import *
 from encryption.srun_sha1 import *
@@ -113,12 +114,13 @@ def autologin(opt):
     login()
     
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--username', nargs='+', type=str, default='SQT2000404069', help='用户名设置')
-    parser.add_argument('--password', nargs='+', type=str, default='1673518361a,', help='密码设置')
-    parser.add_argument('--loop', type=bool, default = True, help='是否循环检测校园网是否断联')
+    parser.add_argument('--username', type=str, default='', help='用户名设置')
+    parser.add_argument('--password', type=str, default='', help='密码设置')
+    parser.add_argument('--loop', type=bool, default = False, help='是否循环检测校园网是否断联')
     opt = parser.parse_args()
+    print(opt)
     if not opt.loop:
         autologin(opt)
     else:
@@ -127,5 +129,7 @@ if __name__ == '__main__':
                 time.sleep(900)
             else:
                 autologin(opt)
+
+
 
 
