@@ -2,6 +2,9 @@ import requests
 import time
 import re
 from urllib.parse import quote
+import argparse
+import urllib3
+
 from encryption.srun_md5 import *
 from encryption.srun_sha1 import *
 from encryption.srun_base64 import *
@@ -9,7 +12,7 @@ from encryption.srun_xencode import *
 header={
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36'
 }
-init_url="http://login.cumtb.edu.cn/srun_portal_pc?ac_id=1&theme=pro"
+init_url="http://10.100.90.249/srun_portal_pc?ac_id=1&theme=pro"
 get_challenge_api="http://10.100.90.249//cgi-bin/get_challenge"
 
 srun_portal_api="http://10.100.90.249//cgi-bin/srun_portal"
@@ -92,12 +95,37 @@ def login():
         print('error_type:'+error_msg['error'])
         print(error_msg['error_msg'])
 
+def is_connect_web():
+    try:
+        http = urllib3.PoolManager()
+        http.request('GET', 'https://baidu.com',timeout=2)
+        return True
+    except :
+        return False
 
-if __name__ == '__main__':
+def autologin(opt):
     global username,password
-    username="" #你的用户名和密码
-    password=""
+    username = opt.username
+    password = opt.password
     init_getip()
     get_token()
     do_complex_work()
     login()
+    
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--username', nargs='+', type=str, default='SQT2000404069', help='用户名设置')
+    parser.add_argument('--password', nargs='+', type=str, default='1673518361a,', help='密码设置')
+    parser.add_argument('--loop', type=bool, default = True, help='是否循环检测校园网是否断联')
+    opt = parser.parse_args()
+    if not opt.loop:
+        autologin(opt)
+    else:
+        while True:
+            if is_connect_web():
+                time.sleep(900)
+            else:
+                autologin(opt)
+
+
