@@ -3,3 +3,7 @@
 
 # 使用方法
 更改用户名以及密码，使用脚本一键登录
+
+```bash
+python autologin.py --username "username" --password "password"  --loop True
+```
