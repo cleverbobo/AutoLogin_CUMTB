@@ -64,21 +64,6 @@ def do_complex_work():
     hmd5=get_md5(password,token)
     chksum=get_sha1(get_chksum())
     print("所有加密工作已完成")
-# dictx = {
-#     callback:jQuery11240707661753561533_1671122992711,
-#     &action=login
-#     &username=SQT2000404069
-#     &password={MD5}85ee2e33a0c798fda4d6348ba518bcb7
-#     &os=Windows+10
-#     &name=Windows
-#     &double_stack=0
-#     &chksum=ea5b7ac4270274a967dcf17ced4642e0f3da13a6
-#     &info={SRBX1}4UCgPd3wLVQggQwUolz9RAIt9LYdydG0wQ26OvySTKoHmdnfBpKbmRATFEq/U2s+IpqNRBTYwnZkTVE24+PZIo3pFuY6nfKSihdqgMo7ksxIgZsxrTKoKubKqf+AUnbf6+skIEJgpkJTIun7zoRzJS==
-#     &ac_id=1
-#     &ip=10.20.34.17
-#     &n=200
-#     &type=1
-#     &_=1671122992714
 def login():
     srun_portal_params={
     'callback': 'jQuery11240707661753561533_'+str(int(time.time()*1000)),
