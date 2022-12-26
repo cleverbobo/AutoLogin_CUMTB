@@ -105,13 +105,16 @@ def is_connect_web():
         return False
 
 def autologin(opt):
-    global username,password
-    username = opt.username
-    password = opt.password
-    init_getip()
-    get_token()
-    do_complex_work()
-    login()
+    try:
+        global username,password
+        username = opt.username
+        password = opt.password
+        init_getip()
+        get_token()
+        do_complex_work()
+        login()
+    except:
+        pass
     
 
 if __name__ == "__main__":
